@@ -1,0 +1,57 @@
+<div class="col-md-12">
+    <div *ngIf= "isLoggedIn" class="table">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th
+                    (click)="sort('produdtName')">Name</th>
+                    <th
+                    (click)="sort('description')">Description</th>
+                    <th
+                    (click)="sort('dimensions')">Dimensions</th>
+                    <th
+                    (click)="sort('servings')">Servings</th>
+                    <th
+                    (click)="sort('covering')">Covering</th>
+                    <th
+                    (click)="sort('category')">Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products;
+                          trackBy:trackby.product">
+                    <td>
+                      <figure>
+                      <img src= "{{ product.imageUrl }}"
+                          alt="Product Image"
+                          />
+                        </figure>
+                    </td>
+                    <td *ngIf="!isLoggedIn">{{ product.productName | capitalize }}</td>
+                    <td *ngIf="isLoggedIn"><a [routerLink]="['/products',product._id]">{{ product.productName | capitalize }}</a></td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.productDimensions }}</td>
+                    <td>{{ product.productServings }}</td>
+                    <td>{{ product.productCovering }}</td>
+                    <td>{{ product.category | capitalize }}</td>
+                </tr>
+                <tr *ngIf="!products.length">
+                    <td>&nbsp;</td>
+                    <td colspan="6">{{ products.length}} records were found</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!isLoggedIn">
+
+      <div class="grid-row">
+        <div class="grid-column" *ngFor="let product of products">
+            <a [routerLink]="['/products', product._id]"><img src="{{ product.imageUrl }}" style="width:90%">
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+</div>

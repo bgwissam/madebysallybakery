@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+                {{ title }}
+    </div>
+        <div class="card-body">
+              <div class="search-bar">
+                    <app-filter-textbox (changed)="filterChanged($event)"></app-filter-textbox>
+
+
+                    <button  class="button button1"
+                              *ngIf="isLoggedIn"
+                              title="Add New Product"
+                              [routerLink]="['/products', '0']">Add New Product
+                            </button>
+
+            </div>
+
+          </div>
+          <div class="card-body">
+        <app-products-grid [products]="filteredProducts"></app-products-grid>
+      </div>
+        <app-pagination [totalItems]="totalRecords"
+            [pageSize]="pageSize"
+            (pageChanged)="pageChanged($event)"></app-pagination>
+
+</div>
+

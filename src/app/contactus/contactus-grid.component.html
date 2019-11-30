@@ -1,0 +1,46 @@
+<div class="col-md-12">
+  <div class="table">
+      <table class="table table-striped table-hover">
+          <thead>
+              <tr>
+                  <th
+                  (click)="sort('firstName')">Full Name</th>
+                  <th
+                  (click)="sort('email')">Email Address</th>
+                  <th
+                  (click)="sort('phone')">Phone</th>
+                  <th
+                  (click)="sort('servings')">Servings</th>
+                  <th
+                  (click)="sort('occassion')">Occassion</th>
+                  <th
+                  (click)="sort('dateOfOccassion')">Date of Occassion</th>
+                  <th
+                  (click)="sort('dateOfApplication')">Date of Application</th>
+                  <th
+                  (click)="sort('theme')">Theme</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let customer of customerList;
+                        trackBy:trackby.customer">
+                  <td><a [routerLink]="['/contactus',customer._id]">
+                    {{ customer.firstName | capitalize }}  {{ customer.lastName | capitalize}}</a>
+                  </td>
+                  <td>{{ customer.email }}</td>
+                  <td>{{ customer.phone }}</td>
+
+                  <td>{{ customer.servings }}</td>
+                  <td>{{ customer.occassion }}</td>
+                  <td>{{ customer.dateOfOccassion | date: 'mediumDate' }}</td>
+                  <td>{{ customer.dateOfApplication | date: 'mediumDate' }}</td>
+                  <td>{{ customer.theme }}</td>
+              </tr>
+              <tr *ngIf="!customerList.length">
+                  <td>&nbsp;</td>
+                  <td colspan="6">{{ customerList.length}} records were found</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

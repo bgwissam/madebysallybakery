@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    {{ title }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <app-filter-textbox
+          (changed)="filterChanged($event)"
+        ></app-filter-textbox>
+      </div>
+      <div class="col-md-6">
+      <button
+        class="btn btn-primary mr-3"
+        style="width:180px;"
+        type="button"
+        title="Add New Customer"
+        [routerLink]="['/customers', '0']"
+      >
+        Add New Customer
+      </button>
+    </div>
+  </div>
+
+    <app-customers-grid [customers]="filteredCustomers"></app-customers-grid>
+  </div>
+  <app-pagination
+    [totalItems]="totalRecords"
+    [pageSize]="pageSize"
+    (pageChanged)="pageChanged($event)"
+  ></app-pagination>
+</div>
